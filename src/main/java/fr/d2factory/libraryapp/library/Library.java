@@ -34,7 +34,9 @@ public interface Library {
      * @param book the {@link Book} they return
      * @param member the {@link Member} who is returning the book
      *
+     * @throws WalletInsufficientException in case of the member does not have enough money
+     *
      * @see Member#payBook(int)
      */
-    void returnBook(Book book, Member member);
+    void returnBook(Book book, Member member) throws WalletInsufficientException;
 }
