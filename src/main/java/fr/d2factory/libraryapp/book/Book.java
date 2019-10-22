@@ -1,15 +1,22 @@
 package fr.d2factory.libraryapp.book;
 
+import java.io.Serializable;
+
 /**
  * A simple representation of a book
  */
-public class Book {
+public class Book implements Serializable {
 	
-    String title;
+	private static final long serialVersionUID = 4163381799727917218L;
+
+	private String title;
     
-    String author;
+    private String author;
     
-    ISBN isbn;
+    private ISBN isbn;
+    
+    public Book() {
+    }
 
     public Book(String title, String author, ISBN isbn) {
         this.title = title;
@@ -41,6 +48,24 @@ public class Book {
 		this.isbn = isbn;
 	}
     
+    //Depends only on isbn code
+    @Override
+    public int hashCode() {
+        return isbn.hashCode();
+    }
+ 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Book other = (Book) obj;
+        return this.isbn.equals(other.isbn);
+    }
     
     
 }
